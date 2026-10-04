@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>我的第一个网页</title>
+    <style>
+  body {
+    background-color: #86e439;
+    font-family: sans-serif;
+    max-width: 600px;
+    margin: 40px auto;
+  }
+  h1 {
+    color: #330ada;
+  }
+  h2 {
+    color: #757380;
+  }
+
+
+  p {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  a {
+    color: white;
+    background-color: #3a7bd5;
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+  }
+</style>
+  </head>       
+  <body>
+    <h1>你好，我是派大星</h1>
+    <h2>大哥大</h2>
+    <p>这是我写的第一个网页。</p>
+    <a href="https://github.com">去 GitHub 看看</a>
+    <button id="btn">点我</button>
+    <p id="msg"></p>
+    <script>
+      const btn = document.getElementById("btn");
+      const msg = document.getElementById("msg");
+
+      function sayHi(name) {
+        return "你好，" + name + "！";
+      }
+
+      btn.addEventListener("click", function () {
+        msg.textContent = add(5, 3);
+      });
+
+      for (let i = 1; i <= 5; i++) {
+        console.log("第 " + i + " 遍");
+      }
+      function add(a,b){
+        return a + b;
+      }
+    </script>
+  </body>
+</html>

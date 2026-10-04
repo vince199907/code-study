@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>数组练习</title>
+</head>
+
+<body>
+    <h1>我的电影清单</h1>
+    <ul id="list"></ul>
+    <input type="text" id="movieInput" placeholder="输入电影名称">
+    <button id="btn">添加电影</button>
+
+    <script>
+        const movie = ["肖申克的救赎", "新世界", "猫鼠游戏", "阿甘正传", "绿皮书"];
+        const btn = document.getElementById("btn");
+        btn.addEventListener("click", function () {
+            const movieInput = document.getElementById("movieInput");
+            if (movieInput.value === "") {
+                alert("请输入电影名称");
+                return;
+            }
+            movie.push(movieInput.value);
+            movieInput.value = "";
+            render();
+
+        });
+        const list = document.getElementById("list");
+        function render() {
+            list.innerHTML = "";
+            for (let i = 0; i < movie.length; i++) {
+                list.innerHTML += "<li>" + movie[i] + "</li>";
+            }
+
+        }
+        render();
+    </script>
+</body>
+
+</html>
