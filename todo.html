@@ -1,0 +1,45 @@
+<h1>我的待办事项</h1>
+<ul id="list"></ul>
+<input type="text" id="todoInput" placeholder="输入待办事项">
+<button id="btn">添加待办事项</button>
+
+<script>
+    const todos = JSON.parse(localStorage.getItem("todos")) || [];
+    const btn = document.getElementById("btn");
+    btn.addEventListener("click", function () {
+        const todoInput = document.getElementById("todoInput");
+        if (todoInput.value === "") {
+            alert("请输入待办事项");
+            return;
+        }
+        todos.push(todoInput.value);
+        todoInput.value = "";
+        save();
+        render();
+    });
+    const list = document.getElementById("list");
+    function render() {
+        list.innerHTML = "";
+        for (let i = 0; i < todos.length; i++) {
+            list.innerHTML +=
+                "<li>" + todos[i] +
+                " <button onclick='removeTodo(" + i + ")'>删除</button></li>";
+        }
+
+    }
+    function save() {
+        localStorage.setItem("todos", JSON.stringify(todos));
+    }
+
+    function removeTodo(index) {
+        todos.splice(index, 1);
+        render();
+    }
+    const todoInput = document.getElementById("todoInput");
+    todoInput.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            btn.click();
+        }
+    });
+    render();
+</script>
