@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>找 bug</title>
+  </head>
+  <body>
+    <h1>购物车</h1>
+    <ul id="list"></ul>
+    <p id="total"></p>
+
+    <script>
+      const items = [
+        { name: "口红", price: 89, count: 2 },
+        { name: "面霜", price: 199, count: 1 },
+        { name: "眼影", price: 129, count: 3 }
+      ];
+
+      const list = document.getElementById("list");
+      let total = 0;
+
+      for (let i = 0; i < items.length; i++) {
+        list.innerHTML += "<li>" + items[i].name + " x" + items[i].count + "</li>";
+        total = total + items[i].price * items[i].count;
+      }
+
+      document.getElementById("total").textContent = "合计：" + total + " 元";
+    </script>
+  </body>
+</html>
