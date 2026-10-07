@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>天气</title>
+  </head>
+  <body>
+    <h1>现在的天气</h1>
+    <label for="city">城市：</label>
+    <select id="city">
+      <option value="39.90,116.40">北京</option>
+      <option value="31.23,121.47" selected>上海</option>
+      <option value="23.13,113.26">广州</option>
+    </select>
+    <button id="btn">查询</button>
+    <p id="result"></p>
+
+    <script>
+      const city = document.getElementById("city");
+      const btn = document.getElementById("btn");
+      const result = document.getElementById("result");
+
+      btn.addEventListener("click", async function () {
+        const cityName = city.selectedOptions[0].textContent;
+        const coordinates = city.value.split(",");
+        result.textContent = "查询中...";
+        const url = "https://api.open-meteo.com/v1/forecast?latitude=" + coordinates[0] + "&longitude=" + coordinates[1] + "&current=temperature_2m,wind_speed_10m";
+        const res = await fetch(url);
+        const data = await res.json();
+        console.log(data);
+        result.textContent = cityName + "温度：" + data.current.temperature_2m + "°C，风速：" + data.current.wind_speed_10m + " km/h";
+      });
+    </script>
+  </body>
+</html>
